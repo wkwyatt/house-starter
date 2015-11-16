@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html ng-app="myApp">
+<head>
+  <title>Dive Log (HTML)</title>
+  <script type="text/javascript" src="https://code.jquery.com/jquery-git2.min.js"></script>
+  <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.3.15/angular.min.js"></script>
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css" integrity="sha512-dTfge/zgoMYpP7QbHy4gWMEGsbsdZeCXz7irItjcC3sPUFtf0kuFbDz/ixG7ArTxmDjLXDmezHubeNikyKGVyQ==" crossorigin="anonymous">
+  <link href="css/bootstrap.css" rel="stylesheet" />
+
+        <!-- LOCAL STYLES AND JS -->
+  <script type="text/javascript" src="controller.js"></script>
+</head>
+<body ng-controller="houseCtrl">
+  <div class="container-fluid" >
+    <h1>Houses List (in Angular)</h1>
+    <div class="row">
+      <input type="text" class="form-control" ng-model="searchHouses">
+      <div class="col-sm-4"  ng-repeat="item in houses | filter: searchHouses">
+        
+
+        <p><img src="{{item.img}}" width="300"></p>
+        <h4>{{item.address}}<br />{{item.city}}</h4>
+        <h4>{{item.sale}}</h4>
+        <h4>{{item.price}}</h4>
+        <h4>{{item.Zestimate}}</h4>
+        <h4>{{item.disc}}</h4>
+        <h4>{{item.mortgage}}</h4>
+      </div>
+
+    </div>
+  </div>
+
+
+
+
+
+
+    <!-- BASIC HTML -->
+  <div class="container-fluid">
+    <h1>My Houses List (in HTML)</h1>
+    <div class="row">
+      <div class="col-sm-4">
+        <h3>The Villa</h3>
+        <p><img src="http://photos3.zillowstatic.com/p_h/IShf3c5r7s3xw60000000000.jpg" width="300"></p>
+        <h4>4747 Northside Dr, <br />Atlanta, GA 30327</h4>
+        <h4>For Sale</h4>
+        <h4>$2,999,000</h4>
+        <h4>Zestimate®: $4,031,664</h4>
+        <h4>A good deal!! (25% off!)</h4>
+        <h4>Estimated Mortgage: $11,179/mo</h4>
+      </div>
+      <div class="col-sm-4">
+        <h3>The Pool House</h3>
+        <p><img src="http://photos2.zillowstatic.com/p_h/IS1n6j1pnfqv2b1000000000.jpg" width="300"></p>
+        <h4>1101 Garmon Dr NW,<br />Atlanta, GA 30327</h4>
+        <h4>For Sale</h4>
+        <h4>$2,399,000</h4>
+        <h4>Zestimate®: $2,684,662</h4>
+        <h4>Average Deal</h4>
+        <h4>Estimated Mortgage: $8,943/mo</h4>
+      </div>
+      <div class="col-sm-4">
+        <h3>The Awesome</h3>
+        <p><img src="http://ak.t1.tiles.virtualearth.net/tiles/cmd/ObliqueHybrid?a=03200231131-48125-20-101&g=4510" width="200"></p>
+        <h4>914 Davis Dr, <br />Atlanta, GA 30327</h4>
+        <h4>NOT for Sale</h4>
+        <h4>-</h4>
+        <h4>Zestimate®: $2,134,055</h4>
+        <h4>-</h4>
+        <h4>Estimated Mortgage: -</h4>
+      </div>   
+    </div>   
+    <div class="row">      
+      <div class="col-sm-4">    
+        <h3>Versailles</h3>
+        <p><img src="http://photos3.zillowstatic.com/p_h/ISx35uo0fixyhb0000000000.jpg" width="200"></p>
+        <h4>5115 Northside Dr,<br />Atlanta, GA 30327</h4>
+        <h4>For Sale</h2>
+        <h4>$8,000,000</h4>
+        <h4>Zestimate®: $12,360,014</h4>
+        <h4>A crazy deal!! (30% off!)</h4>
+        <h4>Estimated Mortgage: $29,821/mo</h4>
+      </div>    
+    </div> 
+  </div>
+</body>
+</html>
