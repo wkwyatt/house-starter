@@ -16,26 +16,94 @@ myApp.factory("House", function() {
 	}
 });
 
-myApp.controller('houseCtrl', function(House, $scope) {
+myApp.controller('houseCtrl', function($scope) {
 
-	$scope.houses = [];
-	// $scope.houses.push(new House('The Villa', 'http://photos3.zillowstatic.com/p_h/IShf3c5r7s3xw60000000000.jpg', '4747 Northside Dr,', 'Atlanta, GA 30327', 'For Sale', '$2,999,000', 'Zestimate®: $4,031,664', 'A good deal!! (25% off!)', 'Estimated Mortgage: $11,179/mo'));
-	// $scope.houses.push(new House('The Pool House', 'http://photos2.zillowstatic.com/p_h/IS1n6j1pnfqv2b1000000000.jpg', '1101 Garmon Dr NW,', 'Atlanta, GA 30327', 'For Sale', '$2,399,000', 'Zestimate®: $2,684,662', 'Average Deal', 'Estimated Mortgage: $8,943/mo'));
-	// $scope.houses.push(new House('The Awesome', 'http://ak.t1.tiles.virtualearth.net/tiles/cmd/ObliqueHybrid?a=03200231131-48125-20-101&g=4510', '914 Davis Dr,', 'Atlanta, GA 30327', 'NOT for Sale', '-', 'Estimated Mortgage: -'));
-	// $scope.houses.push(new House('Versailles', 'http://photos3.zillowstatic.com/p_h/ISx35uo0fixyhb0000000000.jpg', '5115 Northside Dr,', 'Atlanta, GA 30327', 'For Sale', '$8,000,000', 'Zestimate®: $12,360,014', 'A crazy deal!! (30% off!)', 'Estimated Mortgage: $29,821/mo'));
+	$scope.houses = houses;
 
 	var index = 0;
+	setView('list');
+
+	function setView(view) {
+		$scope.view = view;
+	}
+
+	$scope.setView = function(view) {
+		setView(view);
+	}
+
+	$scope.goToAdd = function() {
+		setView('add');
+		$scope.addTitle = '';
+		$scope.addImage = '';
+		$scope.addAddress = '';
+		$scope.addCity = ''
+		$scope.addSale = '';
+		$scope.addPrice = '';
+		$scope.addZest = '';
+		$scope.addDisc = '';
+		$scope.addMort = '';
+	}
+
+	$scope.goToEdit = function(selectedHouse) {
+		setView('edit');
+		$scope.houseIndex = selectedHouse;
+		$scope.editTitle = houses[selectedHouse].title;
+		$scope.editImage = houses[selectedHouse].image;
+		$scope.editAddress = houses[selectedHouse].address;
+		$scope.editCity = houses[selectedHouse].city;
+		$scope.editSale = houses[selectedHouse].sale;
+		$scope.editPrice = houses[selectedHouse].price;
+		$scope.editZest = houses[selectedHouse].Zestimate;
+		$scope.editDisc = houses[selectedHouse].disc;
+		$scope.editMort = houses[selectedHouse].mortgage;
+
+		$scope.houses = houses;
+	}
+
+	$scope.goToDelete = function(selectedHouse) {
+		$scope.houseIndex = selectedHouse;
+		setView('delete');
+	}
 
 	$scope.addHouse = function() {
-		$scope.houses.push(houses[index++]);
+		var newHouse = new House($scope.addTitle, $scope.addImage, $scope.addAddress, $scope.addCity, $scope.addSale, $scope.addPrice, $scope.addZest, $scope.addDisc, $scope.addMort);
+		console.log("$$$$$$$$$");
+		console.log(newHouse);
+		houses.push(newHouse);
+		$scope.houses = houses;
+		console.log(houses);
+		setView('list');
+	}
+
+	$scope.saveEditHouse = function(selectedHouse) {
+		// set the new value of house var
+		houses[selectedHouse].title = $scope.editTitle
+		houses[selectedHouse].image = $scope.editImage
+		houses[selectedHouse].address = $scope.editAddress
+		houses[selectedHouse].city = $scope.editCity
+		houses[selectedHouse].sale = $scope.editSale
+		houses[selectedHouse].price = $scope.editPrice
+		houses[selectedHouse].Zestimate = $scope.editZest
+		houses[selectedHouse].disc = $scope.editDisc
+		houses[selectedHouse].mortgage = $scope.editMort
+
+		// reset scope houses equal to housev var
+		$scope.houses = houses;
+		setView('list');
 	}
 
 	$scope.enableAdd = function() {
 		return index < houses.length;
 	}
 
+	$scope.deleteHouse = function(selectedHouse) {
+		houses.splice(selectedHouse, 1);
+		$scope.houses = houses;
+		setView('list');
+	}
+
 	$scope.clearHouses = function() {
-		$scope.houses[0]]]emove;
-		indsexx == 0;
+		$scope.houses[0].remove;
+		index = 0;
 	}
 });
