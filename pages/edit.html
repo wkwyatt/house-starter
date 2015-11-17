@@ -1,0 +1,17 @@
+<!-- EDIT VIEW ------------- -->
+    <div class="view-edit">
+      <h1>My Dream Houses</h1> 
+      <h2>Edit house details:</h2>
+      <span ng-model="houseIndex" ng-hide="true"></span>
+      <input class="form-control" ng-model="editTitle" type="text" value="{{house.title}}" placeholder="House Name">
+      <input class="form-control" ng-model="editImage" type="text" value="{{house.image}}" placeholder="Photo URL">
+      <input class="form-control" ng-model="editAddress" type="text" value="{{house.address}}" placeholder="Address">
+      <input class="form-control" ng-model="editCity" type="text" value="{{house.city}}" placeholder="City">
+      <input class="form-control" ng-model="editSale" type="text" value="{{house.sale}}" placeholder="For Sale/NOT for sale">
+      <input class="form-control" ng-model="editPrice" type="text" value="{{house.price}}" placeholder="Price">
+      <input class="form-control" ng-model="editZest" type="text" value="{{house.Zestimate}}" placeholder="Zestimate">
+      <input class="form-control" ng-model="editDisc" type="text" value="{{house.disc}}" placeholder="How good a deal is it?">
+      <input class="form-control" ng-model="editMort" type="text" value="{{house.mortgage}}" placeholder="Esitmated Mortgage">
+      <button class="btn btn-success btn-sm" ng-click="saveEditHouse(houseIndex)">Save</button>
+      <button class="btn btn-warning btn-sm" ng-click="setView('list')">Cancel</button>
+    </div>

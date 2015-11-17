@@ -4,6 +4,7 @@
   <title>Dive Log (HTML)</title>
   <script type="text/javascript" src="https://code.jquery.com/jquery-git2.min.js"></script>
   <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.3.15/angular.min.js"></script>
+  <script type="text/javascript" src="angular-route.min.js"></script>
   <!-- <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css" integrity="sha512-dTfge/zgoMYpP7QbHy4gWMEGsbsdZeCXz7irItjcC3sPUFtf0kuFbDz/ixG7ArTxmDjLXDmezHubeNikyKGVyQ==" crossorigin="anonymous"> -->
   <link href="bootstrap.min.css" rel="stylesheet" />
   <script type="text/javascript" src="jquery.min.js"></script>
@@ -15,104 +16,9 @@
     .odd { background-color: #ddd; }
   </style>
 </head>
-<body ng-controller="houseCtrl">
-  <div class="container-fluid container">
+<body>
+  <div class="container-fluid container" ng-view>
 
-    <div class="view-list" ng-show="view == 'list'">
-      <h1>My Dream Houses</h1> 
-      <button class="btn btn-primary btn-lg" ng-click="goToAdd()">Add New House</button>
-      <h2>List of Houses</h2>
-      <div class="row" ng-repeat="house in houses" ng-class-odd=" odd" ng-class-even=" even">
-        <div class="col-sm-5">
-          {{$index + 1}}: {{house.title}}
-        </div>
-
-        <div class="col-sm-4 col-offset3">
-          <button class="btn btn-warning btn-sm" ng-click="goToEdit($index)">Edit</button>
-          <button class="btn btn-danger btn-sm" ng-click="goToDelete($index)">Delete</button>
-        </div>
-      </div>
-    </div>
-
-
-      <!-- ADD VIEW ------------------- -->
-    <div class="view-add" ng-show="view == 'add'">
-      <h1>My Dream Houses</h1> 
-      <h2>Specify the details of the house:</h2>
-      <input class="form-control" ng-model="addTitle" type="text" placeholder="House Name">
-      <input class="form-control" ng-model="addImage" type="text" placeholder="Photo URL">
-      <input class="form-control" ng-model="addAddress" type="text" placeholder="Address">
-      <input class="form-control" ng-model="addCity" type="text" placeholder="City">
-      <input class="form-control" ng-model="addSale" type="text" placeholder="For Sale/NOT for sale">
-      <input class="form-control" ng-model="addPrice" type="text" placeholder="Price">
-      <input class="form-control" ng-model="addZest" type="text" placeholder="Zestimate">
-      <input class="form-control" ng-model="addDisc" type="text" placeholder="How good a deal is it?">
-      <input class="form-control" ng-model="addMort" type="text" placeholder="Esitmated Mortgage">
-      <button class="btn btn-success btn-sm" ng-click="addHouse()">Add</button>
-      <button class="btn btn-warning btn-sm" ng-click="setView('list')">Cancel</button>
-    </div>
-
-        <!-- EDIT VIEW ------------- -->
-    <div class="view-edit" ng-show="view == 'edit'">
-      <h1>My Dream Houses</h1> 
-      <h2>Edit house details:</h2>
-      <span ng-model="houseIndex" ng-hide="true"></span>
-      <input class="form-control" ng-model="editTitle" type="text" value="{{house.title}}" placeholder="House Name">
-      <input class="form-control" ng-model="editImage" type="text" value="{{house.image}}" placeholder="Photo URL">
-      <input class="form-control" ng-model="editAddress" type="text" value="{{house.address}}" placeholder="Address">
-      <input class="form-control" ng-model="editCity" type="text" value="{{house.city}}" placeholder="City">
-      <input class="form-control" ng-model="editSale" type="text" value="{{house.sale}}" placeholder="For Sale/NOT for sale">
-      <input class="form-control" ng-model="editPrice" type="text" value="{{house.price}}" placeholder="Price">
-      <input class="form-control" ng-model="editZest" type="text" value="{{house.Zestimate}}" placeholder="Zestimate">
-      <input class="form-control" ng-model="editDisc" type="text" value="{{house.disc}}" placeholder="How good a deal is it?">
-      <input class="form-control" ng-model="editMort" type="text" value="{{house.mortgage}}" placeholder="Esitmated Mortgage">
-      <button class="btn btn-success btn-sm" ng-click="saveEditHouse(houseIndex)">Save</button>
-      <button class="btn btn-warning btn-sm" ng-click="setView('list')">Cancel</button>
-    </div>
-
-      <!-- DELETE VIEW ----------- -->
-    <div class="view-delete" ng-show="view == 'delete'">
-      <h1>Confirm Delete</h1>
-      <h2>Are you sure you want to delete?</h2>
-      <span ng-model="houseIndex" ng-hide="true"></span>
-      <button class="btn btn-danger btn-sm" ng-click="deleteHouse(houseIndex)">Yes</button>
-      <button class="btn btn-primary btn-sm" ng-click="setView('list')">No</button>
-    </div>
-
-   
-
-               <!-- SET UP MODAL  -->
-<!--     <div id="myModal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="mainModal">
-
-
-
-      <div class="modal-dialog" role="document">
-        <div class="modal-content">
-          <div class="modal-header">
-            <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-            <h4 class="modal-title" id="myModalLabel">Modal title</h4>
-          </div>
-          <div class="modal-body">
-            <input class="form-control" type="text" placeholder="House Name">
-            <input class="form-control" type="text" placeholder="Photo URL">
-            <input class="form-control" type="text" placeholder="Address">
-            <input class="form-control" type="text" placeholder="For Sale/NOT for sale">
-            <input class="form-control" type="text" placeholder="Price">
-            <input class="form-control" type="text" placeholder="Zestimate">
-            <input class="form-control" type="text" placeholder="How good a deal is it?">
-            <input class="form-control" type="text" placeholder="Esitmated Mortgage">
-          </div>
-          <div class="modal-footer">
-            <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-            <button type="button" ng-click="addHouse()" class="btn btn-primary">Save</button>
-          </div>
-        </div>
-      </div>
-
-
-
-
-    </div> -->
   </div>
 
 </body>

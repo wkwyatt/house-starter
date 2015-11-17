@@ -1,4 +1,26 @@
-var myApp = angular.module('myApp', []);
+var myApp = angular.module('myApp', ['ngRoute']);
+
+myApp.config(function($routeProvider) {
+	$routeProvider.when('/',{
+		templateUrl: 'houses_starter.html',
+		controller: 'mainController'
+	}).
+	when('/add', {
+		templateUrl: 'pages/add.html',
+		controller: 'addController'
+	}).
+	when('/edit', {
+		templateUrl: 'pages/edit.html',
+		controller: 'editController'
+	}).
+	when('/delete', {
+		templateUrl: 'pages/delete.html',
+		controller: 'deleteController'
+	}).
+	otherwise({
+		redirect: '/'
+	})
+});
 
 myApp.factory("House", function() {
 	return function(name, img, address, city, sale, price, Zestimate, disc, mortgage) {

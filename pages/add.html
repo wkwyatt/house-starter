@@ -1,1 +1,16 @@
-add.html
+ <!-- ADD VIEW ------------------- -->
+    <div class="view-add">
+      <h1>My Dream Houses</h1> 
+      <h2>Specify the details of the house:</h2>
+      <input class="form-control" ng-model="addTitle" type="text" placeholder="House Name">
+      <input class="form-control" ng-model="addImage" type="text" placeholder="Photo URL">
+      <input class="form-control" ng-model="addAddress" type="text" placeholder="Address">
+      <input class="form-control" ng-model="addCity" type="text" placeholder="City">
+      <input class="form-control" ng-model="addSale" type="text" placeholder="For Sale/NOT for sale">
+      <input class="form-control" ng-model="addPrice" type="text" placeholder="Price">
+      <input class="form-control" ng-model="addZest" type="text" placeholder="Zestimate">
+      <input class="form-control" ng-model="addDisc" type="text" placeholder="How good a deal is it?">
+      <input class="form-control" ng-model="addMort" type="text" placeholder="Esitmated Mortgage">
+      <button class="btn btn-success btn-sm" ng-click="addHouse()">Add</button>
+      <button class="btn btn-warning btn-sm" ng-click="setView('list')">Cancel</button>
+    </div>

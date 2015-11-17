@@ -1,1 +1,15 @@
-list.html
+    <div class="view-list" ng-show="view == 'list'">
+      <h1>My Dream Houses</h1> 
+      <button class="btn btn-primary btn-lg" ng-click="goToAdd()">Add New House</button>
+      <h2>List of Houses</h2>
+      <div class="row" ng-repeat="house in houses" ng-class-odd=" odd" ng-class-even=" even">
+        <div class="col-sm-5">
+          {{$index + 1}}: {{house.title}}
+        </div>
+
+        <div class="col-sm-4 col-offset3">
+          <button class="btn btn-warning btn-sm" ng-click="goToEdit($index)">Edit</button>
+          <button class="btn btn-danger btn-sm" ng-click="goToDelete($index)">Delete</button>
+        </div>
+      </div>
+    </div>
