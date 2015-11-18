@@ -2,14 +2,14 @@ var myApp = angular.module('myApp', ['ngRoute']);
 
 myApp.config(function($routeProvider) {
 	$routeProvider.when('/',{
-		templateUrl: 'houses_starter.html',
-		controller: 'mainController'
+		templateUrl: 'pages/list.html',
+		controller: 'listController'
 	}).
 	when('/add', {
 		templateUrl: 'pages/add.html',
 		controller: 'addController'
 	}).
-	when('/edit', {
+	when('/edit/:houseIndex', {
 		templateUrl: 'pages/edit.html',
 		controller: 'editController'
 	}).
@@ -36,6 +36,33 @@ myApp.factory("House", function() {
 			mortgage: mortgage
 		}
 	}
+});
+
+myApp.controller('listController', function($scope) {
+	$scope.houses = houses;
+});
+
+
+myApp.controller('addController', function($scope) {
+	$scope.addHouse = function() {
+		var newHouse = new House($scope.addTitle, $scope.addImage, $scope.addAddress, $scope.addCity, $scope.addSale, $scope.addPrice, $scope.addZest, $scope.addDisc, $scope.addMort);
+		houses.push(newHouse);
+		console.log(newHouse);
+	}
+});
+
+
+
+
+myApp.controller('editController', function($scope, $routeParams) {
+	$scope.house = houses[$routeParams.houseIndex];
+	$scope.saveHouse = function() {
+		houses[$routeParams.houseIndex] = $scope.house;
+	}
+});
+
+myApp.controller('deleteController', function($scope) {
+	
 });
 
 myApp.controller('houseCtrl', function($scope) {

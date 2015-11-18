@@ -1,6 +1,6 @@
-    <div class="view-list" ng-show="view == 'list'">
+    <div class="view-list">
       <h1>My Dream Houses</h1> 
-      <button class="btn btn-primary btn-lg" ng-click="goToAdd()">Add New House</button>
+     <a href="#/add"><button class="btn btn-primary btn-lg">Add New House</button></a>
       <h2>List of Houses</h2>
       <div class="row" ng-repeat="house in houses" ng-class-odd=" odd" ng-class-even=" even">
         <div class="col-sm-5">
@@ -8,8 +8,8 @@
         </div>
 
         <div class="col-sm-4 col-offset3">
-          <button class="btn btn-warning btn-sm" ng-click="goToEdit($index)">Edit</button>
-          <button class="btn btn-danger btn-sm" ng-click="goToDelete($index)">Delete</button>
+          <a href="#/edit/{{$index}}"><button class="btn btn-warning btn-sm">Edit</button></a>
+          <a href="#/"<button class="btn btn-danger btn-sm">Delete</button>
         </div>
       </div>
     </div>
